@@ -2,7 +2,7 @@ Parameters:
   KeyName:
     Description: 2022.09.29 example
     Type: AWS::EC2::KeyPair::KeyName
-    ConstraintDescription: must be the name of an existing EC2 KeyPair
+    ConstraintDescription: 220929 iac example
 
 Resources:
   CloudVPC:
@@ -79,7 +79,7 @@ Resources:
   CloudSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable HTTP access via port 80 and SSH access via port 22
+      GroupDescription: tcp and icmp
       VpcId: !Ref CloudVPC
       SecurityGroupIngress:
       - IpProtocol: tcp
@@ -99,7 +99,7 @@ Resources:
       KeyName: !Ref KeyName
       Tags:
         - Key: Name
-          Value: CloudPublicEC2
+          Value: example_CloudPublicEC2
       NetworkInterfaces:
         - DeviceIndex: 0
           SubnetId: !Ref CloudPublicSN
@@ -115,7 +115,7 @@ Resources:
       KeyName: !Ref KeyName
       Tags:
         - Key: Name
-          Value: CloudPrivateEC2
+          Value: example_CloudPrivateEC2
       NetworkInterfaces:
         - DeviceIndex: 0
           SubnetId: !Ref CloudPrivateSN
@@ -126,8 +126,8 @@ Resources:
           !Sub |
             #!/bin/bash
             (
-            echo "qwe123"
-            echo "qwe123"
+            echo "not_show"
+            echo "not_show"
             ) | passwd --stdin root
             sed -i "s/^PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
             sed -i "s/^PermitRootLogin yes/PermitRootLogin yes/g" /etc/ssh/sshd_config
