@@ -1,3 +1,6 @@
+#AWS 內 VPC, Subnet, RouteTable, InternetGateway, EC2 Instance 배포 !
+#.yml 파일로 IaC , AWS CloudFormation 사용
+
 Parameters:
   KeyName:
     Description: 2022.09.29 example
